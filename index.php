@@ -10,11 +10,11 @@
 | is ready to receive HTTP / Console requests from the environment.
 |
 */
-	
+
 $app = require __DIR__.'/inc/config.php';
 $app = require __DIR__.'/inc/func.php';
 $app = require __DIR__.'/bootstrap/app.php';
-pr($app,1);
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application
