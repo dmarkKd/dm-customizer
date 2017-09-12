@@ -1,0 +1,33 @@
+{
+  "name": "acm-website",
+  "version": "1.0.0",
+  "description": "Lumen-based website for WUSTL ACM chapter",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.18.7",
+    "gulp": "^3.9.1",
+    "gulp-connect-php": "0.0.8",
+    "gulp-sass": "^3.1.0",
+    "gulp-scss": "^1.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WashU-ACM/acm-website.git"
+  },
+  "author": "Han, Aaron, and Peter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WashU-ACM/acm-website/issues"
+  },
+  "homepage": "https://github.com/WashU-ACM/acm-website#readme",
+  "keywords": [
+    "lumen"
+  ]
+}
