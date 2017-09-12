@@ -20,7 +20,7 @@ class ShopifyController extends Controller
     public function index()
     {
 
-        echo "here";
+    
         $_db = 'stores.json';
         if(!empty($_REQUEST)){
         
