@@ -108,10 +108,14 @@ class ShopifyController extends Controller
        
         $apiKey         = API_KEY;
         $sharedSecret   = APP_SECRET;
-        $shopDomain     = "https://".$shop."/admin/apps";
+        $shopDomain     = "https://".$shop.;
         $code           = $code;
 
-        pr($apiKey.$sharedSecret,.$shopDomain,.$code,1);
+        pr($sharedSecret);
+        pr($shopDomain);
+        pr($code,1);
+       
+
         $tokenExchanger = new TokenExchanger(new Client());
 
         $accessToken  = $tokenExchanger->exchangeCodeForToken($apiKey, $sharedSecret, $shopDomain, $code);
