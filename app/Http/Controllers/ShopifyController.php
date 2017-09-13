@@ -100,22 +100,16 @@ class ShopifyController extends Controller
 
     public function customizer()
     {
-
-
-   
+        pr($_GET);
         $shop = trim($_GET['shop']);
         $code = trim($_GET['signature']);
        
         $apiKey         = API_KEY;
         $sharedSecret   = APP_SECRET;
-        $shopDomain     = "https://".$shop.;
-        $code           = $code;
-
-        pr($sharedSecret);
+         $shopDomain     = "https://".$shop.;
+         $code           = $code;
         pr($shopDomain);
         pr($code,1);
-       
-
         $tokenExchanger = new TokenExchanger(new Client());
 
         $accessToken  = $tokenExchanger->exchangeCodeForToken($apiKey, $sharedSecret, $shopDomain, $code);
