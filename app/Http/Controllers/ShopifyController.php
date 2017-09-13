@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use ZfrShopify\OAuth\AuthorizationRedirectResponse;
-
+use GuzzleHttp\Client;
+use ZfrShopify\OAuth\TokenExchanger;
 class ShopifyController extends Controller
 {
     /**
