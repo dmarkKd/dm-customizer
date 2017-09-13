@@ -102,16 +102,19 @@ class ShopifyController extends Controller
     {
 
 
-        pr($_GET,1);
-
+   
+        $shop = trim($_GET['shop']);
+        $code = trim($_GET['signature']);
+       
         $apiKey         = API_KEY;
         $sharedSecret   = APP_SECRET;
         $shopDomain     = "https://".$shop."/admin/apps";
         $code           = $code;
 
         $tokenExchanger = new TokenExchanger(new Client());
+        pr($tokenExchanger);
         $accessToken    = $tokenExchanger->exchangeCodeForToken($apiKey, $sharedSecret, $shopDomain, $code);
-
+        pr($accessToken,1);
          header('Content-Type:application/liquid');
 
          //echo "hello";   
