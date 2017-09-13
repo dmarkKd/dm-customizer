@@ -112,14 +112,14 @@ class ShopifyController extends Controller
         $code           = $code;
 
         $tokenExchanger = new TokenExchanger(new Client());
-        //pr($tokenExchanger);
-        foreach ($shopifyClient->getProductsIterator(['fields' => 'id,title']) as $product) {
-            // Do something with product
-              pr($product,1);
-      }
-        $accessToken    = $tokenExchanger->exchangeCodeForToken($apiKey, $sharedSecret, $shopDomain, $code);
-      
-         header('Content-Type:application/liquid');
+
+        $accessToken = $tokenExchanger->exchangeCodeForToken($apiKey, $sharedSecret, $shopDomain, $code);
+        pr($apiKey);
+        pr($sharedSecret);
+        pr($shopDomain);
+        pr($code);
+        pr( $tokenExchanger->exchangeCodeForToken());
+        header('Content-Type:application/liquid');
 
          //echo "hello";   
     }
