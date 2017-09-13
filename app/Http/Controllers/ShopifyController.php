@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use ZfrShopify\OAuth\AuthorizationRedirectResponse;
 
+use GuzzleHttp\Client;
+use ZfrShopify\OAuth\TokenExchanger;
+
 class ShopifyController extends Controller
 {
     /**
@@ -97,7 +100,23 @@ class ShopifyController extends Controller
 
     public function customizer()
     {
-        pr($_GET);
+
+
+   
+        $shop = trim($_GET['shop']);
+        $code = trim($_GET['signature']);
+       
+        $apiKey         = API_KEY;
+        $sharedSecret   = APP_SECRET;
+        $shopDomain     = "https://".$shop."/admin/apps";
+        $code           = $code;
+
+        pr($code.$shop,1);
+        $tokenExchanger = new TokenExchanger(new Client());
+
+        $accessToken  = $tokenExchanger->exchangeCodeForToken($apiKey, $sharedSecret, $shopDomain, $code);
+      
+         header('Content-Type:application/liquid');
 
          //echo "hello";   
     }
