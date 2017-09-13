@@ -101,23 +101,7 @@ class ShopifyController extends Controller
     public function customizer()
     {
 
-          isset($_GET['shop']) or die ('Query parameter "shop" missing.');
-        preg_match('/^[a-zA-Z0-9\-]+.myshopify.com$/', $_GET['shop']) or die('Invalid myshopify.com store URL.');
 
-        $shop = trim($_GET['shop']);
-        $code = trim($_GET['code']);
-        $hmac = trim($_GET['hmac']);
-        $state = trim($_GET['state']);
-        $timestamp = trim($_GET['timestamp']);
-
-        $store = str_replace('.myshopify.com', '', $shop);
-     
-       // $code = trim($_GET['code']);
-        pr($shop);
-        pr($code);
-        pr($state);
-        pr($timestamp);
-        pr($shop);
         pr($_GET,1);
 
         $apiKey         = API_KEY;
