@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use ZfrShopify\OAuth\AuthorizationRedirectResponse;
 
-use GuzzleHttp\Client;
-use ZfrShopify\OAuth\TokenExchanger;
-
 class ShopifyController extends Controller
 {
     /**
@@ -111,8 +108,8 @@ class ShopifyController extends Controller
         $shopDomain     = "https://".$shop."/admin/apps";
         $code           = $code;
 
-        $tokenExchanger = new TokenExchanger(new Client());
-
+        $tokenExchanger = new ShopifyClient();
+        pr($tokenExchanger,1);
         $accessToken = $tokenExchanger->exchangeCodeForToken($apiKey, $sharedSecret, $shopDomain, $code);
         pr($apiKey);
         pr($sharedSecret);
