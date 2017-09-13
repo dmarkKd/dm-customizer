@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use ZfrShopify\OAuth\AuthorizationRedirectResponse;
 
+use GuzzleHttp\Client;
+use ZfrShopify\OAuth\TokenExchanger;
+
 class ShopifyController extends Controller
 {
     /**
@@ -76,7 +79,6 @@ class ShopifyController extends Controller
 
         //pr( $shopifyStores );
 
-
         $shopifyStores[$store]->store = $store;
         $shopifyStores[$store]->code = $code;
         $shopifyStores[$store]->hmac = $hmac;
@@ -87,7 +89,7 @@ class ShopifyController extends Controller
 
         //Write the DB updates
         write_file( STORES_DB, json_encode($shopifyStores) );
-       // pr( $shopifyStores, 1 );
+        // pr( $shopifyStores, 1 );
 
         $storeRedirectURI = "https://".$shop."/admin/apps";
         header("location:".$storeRedirectURI);
@@ -99,11 +101,23 @@ class ShopifyController extends Controller
     public function customizer()
     {
 
-         pr($_GET,1);
+    
+        $shop = trim($_GET['shop']);
+        $code = trim($_GET['code']);
+        pr($shop);
+        pr($code,1);
+
+        $apiKey         = API_KEY;
+        $sharedSecret   = APP_SECRET;
+        $shopDomain     = "https://".$shop."/admin/apps";
+        $code           = $code;
+
+        $tokenExchanger = new TokenExchanger(new Client());
+        $accessToken    = $tokenExchanger->exchangeCodeForToken($apiKey, $sharedSecret, $shopDomain, $code);
 
          header('Content-Type:application/liquid');
 
-         echo "hello";   
+         //echo "hello";   
     }
 
 
