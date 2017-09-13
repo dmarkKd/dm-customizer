@@ -32,7 +32,9 @@ class ShopifyController extends Controller
 
             $shopDomain = $_GET['shop'];
 
-            $scopes         = ['read_orders', 'read_products'];
+            $scopes  = ['read_content', 'write_content', 'read_themes', 'write_themes', 'read_products', 'write_products', 'read_customers', 
+                       'write_customers', 'read_orders', 'write_orders', 'read_script_tags', 'write_script_tags', 'read_fulfillments',
+                        'write_fulfillments', 'read_shipping', 'write_shipping'];
             $redirectUri = APP_BASE_URL.'/oauth';
             $nonce          = 'strong_nonce';
 
@@ -53,6 +55,12 @@ class ShopifyController extends Controller
 
 
         }
+        else{
+
+            die("Invalid API call");
+
+        }
+
     }
 
 
@@ -100,11 +108,19 @@ class ShopifyController extends Controller
     public function customizer()
     {
 
-         pr($_GET,1);
+       
+        $apiKey         = API_KEY;
+        $sharedSecret   = APP_SECRET;
+        $shopDomain     = 'logicats-demo.myshopify.com';
+        $code           = '05dc974cd28734a999313f894e857d27';
+        $requiredScopes = array('read_content', 'write_content', 'read_themes', 'write_themes', 'read_products', 'write_products', 'read_customers', 'write_customers', 'read_orders', 'write_orders', 'read_script_tags', 'write_script_tags', 'read_fulfillments', 'write_fulfillments', 'read_shipping', 'write_shipping');
 
-         header('Content-Type:application/liquid');
-
-         echo "hello";   
+        $tokenExchanger = new TokenExchanger(new Client());
+   
+        $accessToken    = $tokenExchanger->exchangeCodeForToken($apiKey, $sharedSecret, $shopDomain, $requiredScopes, $code);
+        pr($accessToken, 1);
+        header('Content-Type:application/liquid');
+        echo "hello";   
     }
 
 
